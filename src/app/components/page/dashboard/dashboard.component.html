@@ -1,0 +1,42 @@
+<div class="row">
+    <div class="col-12">
+        <div class="row">
+            <div class="col-5">
+                <table class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">NOMBRE</th>
+                        <th scope="col">JUGADORES REGISTRADOS</th>
+                        <th scope="col">ACTIVO</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let team of teams; let i = index;">
+                        <th scope="row">{{i + 1 }}</th>
+                        <td>{{team.name}}</td>
+                        <td>12</td>
+                        <td><span class="badge bg-primary">Activo</span></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  <button *ngIf="teams.length" type="button" class="btn btn-danger" (click)="deleteAll()">QUITAR TODOS</button>
+            </div>
+            <div class="col-7">
+                <form autocomplete="off" [formGroup]="teamForm" (ngSubmit)="onSubmit()">
+                    <div class="mb-3">
+                      <label for="nameTeam" class="form-label">Nombre</label>
+                      <input type="text" class="form-control" id="nameTeam" aria-describedby="emailHelp" formControlName="name">
+                      <div id="emailHelp" class="form-text">Nombre con el que se concera al equipo</div>
+                    </div>
+                    <div class="mb-3">
+                      <label for="numPlayers" class="form-label">No. Jugadores </label>
+                      <input type="number" class="form-control" id="numPlayers" formControlName="quantity_players" min="7" max="20" minlength="1" maxlength="20">
+                    </div>
+                    <button type="submit" class="btn btn-primary">GUARDAR</button>
+                </form>
+                <pre>{{teamForm.value | json }}</pre>
+            </div>
+        </div>
+    </div>
+</div>
